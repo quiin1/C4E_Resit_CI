@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex1</title>
+</head>
+<body>
+
+    <form>
+        <input type="number" placeholder="Enter a" id="a"/>
+        <input type="number" placeholder="Enter b" id="b"/>
+        <button type="submit" id="submit">Enter</button>
+    </form>
+
+
+    <script>
+        function isPrime(number) {
+            if (isNaN(number) || number <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // test
+        // for(let i = 0; i < 100; i++) {
+        //     if (isPrime(i)) {
+        //         document.write(i);
+        //         document.write('<br/>');
+        //     }
+        // }
+
+        const a = document.getElementById('a');
+        const b = document.getElementById('b');
+        const form = document.querySelector('form');
+        let result = '';
+        let count = 0;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            if (isNaN(a.value)) {
+                alert(`${a.value} is not a number`);
+                return;
+            }
+            if (isNaN(b.value)) {
+                alert(`${b.value} is not a number`);
+                return;
+            }
+
+            for (let i = Number(a.value); i <= Number(b.value); i++) {
+                if (isPrime(i)) {
+                    count++;
+                    result += `${i} `;
+                    // document.write(`${i} `);
+                    // console.log(i);
+                }
+            }
+            document.write(`Có ${count} số nguyên tố trong khoảng [${a.value}, ${b.value}] là:`);
+            document.write(`<br/>`);
+            document.write(`${result}`);
+        })
+        
+    </script>
+</body>
+</html>
